@@ -56,7 +56,7 @@ store.on("error",function(e){
 
 const sessionOptions={
     store,
-    secret: process.env.SECRET,
+    secret:process.env.SECRET,
     resave:false,
     saveUninitialized:true,
     cookie:{
@@ -66,10 +66,10 @@ const sessionOptions={
     }
 }
 
-//main route
-// app.get("/", (req, res) => {
-//     res.send("hii i am root");
-// })
+// main route
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+})
 
 
 
