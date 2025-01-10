@@ -12,8 +12,8 @@
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea name="listing[description]" placeholder="enter description" required class="form-control"> </textarea>
-                <div class="invallid-feedback">Please Enter a Description</div>
+                <textarea name="listing[description]" placeholder="enter description" required class="form-control" > </textarea>
+                <div class="invalid-feedback">Please Enter a Description</div>
             </div>
             
             <div class="mb-3">
@@ -24,20 +24,34 @@
                 <div class="mb-3 col-md-4">
                     <label for="price" class="form-label">Price</label>
                     <input name="listing[price]" placeholder="sample price" type="number" class="form-control" required>
-                    <div class="invallid-feedback">Please Enter Valid Number</div>
+                    <div class="invalid-feedback">Please Enter Valid Number</div>
                 </div>
                 <div class="mb-3 col-md-8 ">
                     <label for="country" class="form-label">Country</label>
                     <input name="listing[country]" placeholder="India" type="text" class="form-control" required>
-                    <div class="invallid-feedback">Please Enter Valid Country</div>
+                    <div class="invalid-feedback">Please Enter Valid Country</div>
                 </div>
             </div>
             
             <div class="mb-3">
                 <label for="location" class="form-label">Location</label>
                 <input name="listing[location]" placeholder="Mumbai,Maharashtra" type="text" class="form-control" required>
-                <div class="invallid-feedback">Please Enter Valid Location</div>
+                <div class="invalid-feedback">Please Enter Valid Location</div>
             </div>
+            <div class="mb-3">
+                <label for="category">Category:</label>
+                <select name="listing[category]" id="category" required>
+                  <option value="Mountain">Mountain</option>
+                  <option value="Sea">Sea</option>
+                  <option value="Camping">Camping</option>
+                  <option value="Arctic">Arctic</option>
+                  <option value="Castel">Castel</option>
+                  <option value="Dome">Dome</option>
+                  <option value="Farm">Farm</option>
+                  <option value="Boats">Boats</option>
+                </select>
+            </div>
+            
             
             <button class="btn btn-dark add-btn">create</button>
             <br><br>

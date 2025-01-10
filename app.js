@@ -12,6 +12,9 @@ const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
 const MongoStore  =require("connect-mongo");
 const flash = require("connect-flash");
+const Listing = require("./models/listing.js");
+require('./passport');
+require('./main.js');
 const passport = require("passport"); 
 const LocalStrategy=require("passport-local");
 const User=require("./models/user.js");
@@ -24,7 +27,7 @@ const userRouter=require("./routes/user.js");
 app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-app.use(express.urlencoded({ extendex: true }));
+app.use(express.urlencoded({ extended: true }));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
@@ -48,7 +51,6 @@ const store=MongoStore.create({
     crypto:{
         secret:process.env.SECRET,
     },
-    touchAfter:24*60*60,
 });
 store.on("error",function(e){
     console.log("session store error",e);
@@ -66,10 +68,7 @@ const sessionOptions={
     }
 }
 
-// main route
-app.get("/", (req, res) => {
-    res.redirect("/listings");
-})
+
 
 
 
@@ -82,6 +81,14 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// Routes
+const authRoutes = require('./routes/auth');
+
+
+// main route
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+})
 
 app.use((req,res,next)=>{
     res.locals.success=req.flash("success");
@@ -100,11 +107,22 @@ app.use((req,res,next)=>{
 //     res.send(newUser);
 // });
 
+app.use(authRoutes);
 
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/",userRouter);
-
+app.get("/listings/category/:category", async (req, res) => {
+    try {
+        console.log("Category:", req.params.category);
+        const { category } = req.params;
+        const listings = await Listing.find({ category: category });
+        res.json(listings);  // Return filtered listings as JSON
+    } catch (error) {
+        console.error("Error fetching listings:", error);
+        res.status(500).json({ error: 'Unable to fetch listings' });
+    }
+});
 
 
 
