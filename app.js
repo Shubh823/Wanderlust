@@ -12,8 +12,6 @@ const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
 const MongoStore  =require("connect-mongo");
 const flash = require("connect-flash");
-const Listing = require("./models/listing.js");
-require('./passport');
 const passport = require("passport"); 
 const LocalStrategy=require("passport-local");
 const User=require("./models/user.js");
@@ -50,6 +48,7 @@ const store=MongoStore.create({
     crypto:{
         secret:process.env.SECRET,
     },
+    touchAfter:24*60*60,
 });
 store.on("error",function(e){
     console.log("session store error",e);
@@ -67,7 +66,10 @@ const sessionOptions={
     }
 }
 
-
+// main route
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+})
 
 
 
@@ -76,21 +78,17 @@ app.use(flash());
 
 app.use(passport.initialize()); 
 app.use(passport.session());
-// Routes
-const authRoutes = require('./routes/auth');
-
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-
-// main route
-app.get("/", (req, res) => {
-    res.redirect("/listings");
-})
-
-
+app.use((req,res,next)=>{
+    res.locals.success=req.flash("success");
+    res.locals.error=req.flash("error");
+    res.locals.currUser=req.user;
+    next();
+});
 
 // app.get("/demousers",async (req,res)=>{
 //     let fakeUser=new User({
@@ -102,28 +100,11 @@ app.get("/", (req, res) => {
 //     res.send(newUser);
 // });
 
-app.use(authRoutes);
 
-app.use((req,res,next)=>{
-    res.locals.success=req.flash("success");
-    res.locals.error=req.flash("error");
-    res.locals.currUser=req.user;
-    next();
-});
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/",userRouter);
-app.get("/listings/category/:category", async (req, res) => {
-    try {
-        console.log("Category:", req.params.category);
-        const { category } = req.params;
-        const listings = await Listing.find({ category: category });
-        res.json(listings);  // Return filtered listings as JSON
-    } catch (error) {
-        console.error("Error fetching listings:", error);
-        res.status(500).json({ error: 'Unable to fetch listings' });
-    }
-});
+
 
 
 
