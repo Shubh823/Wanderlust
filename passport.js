@@ -24,9 +24,8 @@ passport.use(
             name: profile.displayName,
             email: profile.emails[0].value,
             googleId: profile.id,
-            profilePhoto: profile.photos[0]?.value,
           });
-  
+        console.log("user created",user);
           return done(null, user);
         } catch (err) {
           console.error("Error during Google authentication:", err);
