@@ -76,12 +76,13 @@ app.use(flash());
 
 app.use(passport.initialize()); 
 app.use(passport.session());
+// Routes
+const authRoutes = require('./routes/auth');
+
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// Routes
-const authRoutes = require('./routes/auth');
 
 
 // main route

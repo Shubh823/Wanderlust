@@ -4,7 +4,8 @@ const Listing = require("../models/listing.js");
 
 module.exports.index=async (req, res) => {
     const allListings = await Listing.find({});
-    res.render("listings/index.ejs", { allListings,currUser: req.user  });
+    let currUser=req.user || req.session.currUser;
+    res.render("listings/index.ejs", { allListings,currUser });
    
 
 }
@@ -30,7 +31,8 @@ module.exports.showListing=async (req, res) => {
         req.flash("error","Cannot find that listing!");
          res.redirect("/listings");
     }
-    res.render("listings/show.ejs", { listing, currUser: req.user  });
+    let currUser=req.user || req.session.currUser;
+    res.render("listings/show.ejs", { listing,currUser });
 
 }
 
