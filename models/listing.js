@@ -33,7 +33,12 @@ const listingSchema=new Schema({
     owner:{
         type:Schema.Types.ObjectId,
         ref:"User",
-    }
+    },
+    category: {
+        type: String,
+        enum: ['Mountain', 'Sea', 'Camping', 'Arctic','Doms','Boats','Castles','Farms'], // List of categories
+        required: true,
+      },
 });
 
 listingSchema.post("findOneAndDelete",async (listing)=>{

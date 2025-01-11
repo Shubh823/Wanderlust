@@ -112,3 +112,9 @@ module.exports.updateListing=async (req, res) => {
      res.redirect("/listings");
    }
  }
+
+  module.exports.categoryListing=async (req, res) => {
+    const { category } = req.params;
+    const listings = await Listing.find({ category });
+    res.json(listings);
+    };
