@@ -42,55 +42,61 @@
         display: flex;
         align-items: center;
       }
+      @media(max-width: 760px){
+         .remove{
+            display: none;
+         }
+        
+      }
     </style>
-    <div id="filters">
-      <div class="filter" id="Trending" data-category="Mountain">
+    <div id="filters" class="remove">
+      <div class="filter remove" id="Trending" data-category="Mountain">
         <div><i class="fa-solid fa-fire"></i></div>
         <p>Trending</p>
       </div>
-      <div class="filter" id="Rooms" data-category="Domes">
+      <div class="filter remove" id="Rooms" data-category="Domes">
         <div><i class="fa-solid fa-bed"></i></div>
         <p>Rooms</p>
       </div>
-      <div class="filter" id="IconicCities" data-category="Castles">
+      <div class="filter remove" id="IconicCities" data-category="Castles">
         <div><i class="fa-solid fa-mountain-city"></i></i></div>
         <p>Iconic Cities</p>
       </div>
-      <div class="filter" id="mountain" data-category="Mountain">
+      <div class="filter remove" id="mountain" data-category="Mountain">
         <div><i class="fa-solid fa-mountain"></i></i></div>
         <p>Mountains</p>
       </div>
-      <div class="filter" id="Castles" data-category="Castles">
+      <div class="filter remove" id="Castles" data-category="Castles">
         <div><i class="fa-brands fa-fort-awesome"></i>
         </div>
         <p>Castles</p>
       </div>
-      <div class="filter" id="Amazing-Pools" data-category="Mountain">
+      <div class="filter remove" id="Amazing-Pools" data-category="Mountain">
         <div><i class="fa-solid fa-person-swimming"></i></div>
         <p>Amazing Pools</p>
       </div>
-      <div class="filter" id="Camping" data-category="Camping">
+      <div class="filter remove" id="Camping" data-category="Camping">
         <div><i class="fa-solid fa-tent"></i></i></div>
         <p>Camping</p>
       </div>
-      <div class="filter" id="Farms" data-category="Farms">
+      <div class="filter remove" id="Farms" data-category="Farms">
         <div><i class="fa-solid fa-cow"></i></div>
         <p>Farms</p>
       </div>
-      <div class="filter" id="Arctic" data-category="Arctic">
+      <div class="filter remove" id="Arctic" data-category="Arctic">
         <div><i class="fa-regular fa-snowflake"></i></div>
         <p>Arctic</p>
       </div>
-      <div class="filter" id="Domes" data-category="Domes">
+      <div class="filter remove" id="Domes" data-category="Domes">
         <div><i class="fa-solid fa-igloo"></i></div>
         <p>Domes</p>
       </div>
-      <div class="filter" id="Boats" data-category="Boats">
+      <div class="filter remove" id="Boats" data-category="Boats">
         <div><i class="fa-solid fa-ship"></i></div>
         <p>Boats</p>
       </div>
 
-      <div class="tax-toggle">
+      <div class="tax-toggle remove">
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
           <label class="form-check-label" for="flexSwitchCheckDefault">Display total after Taxes</label>
@@ -156,34 +162,24 @@ function displayListings(listings) {
   
   listings.forEach(listing => {
     const card = document.createElement('div');
-    card.classList.add('card', 'col','listing-card');
+    card.classList.add('card', 'listing-card');
     card.innerHTML = `
-      <img src="${listing.image.url}" class="card-img-top" alt="listing_image">
-      <div class="card-body">
-        <p><b>${listing.title}</b><br>&#8377; ${listing.price}</p>
-      </div>
-      
-      
-      
-      <a href="/listings/${ listing._id }" class="listing-link">
-          <div class="card col listing-card">
-            <img src="${listing.image.url}" class="card-img-top" alt="listing_image" style="height: 20rem">
-            <div class="card-img-overlay">
-
-            </div>
-            <div class="card-body">
-              <p class="card-text">
-                <b>
-                  ${listing.title}
-                </b> <br>
-                &#8377; ${listing.price.toLocaleString("en-IN")} / night
-                <i class="tax-info"> &nbsp; &nbsp;+18% GST</i>
-              </p>
-            </div>
+      <a href="/listings/${listing._id}" class="listing-link">
+        <div class="card col listing-card">
+          <img src="${listing.image.url}" class="card-img-top" alt="listing_image" style="height: 20rem">
+          <div class="card-img-overlay"></div>
+          <div class="card-body">
+            <p class="card-text">
+              <b>${listing.title}</b> <br>
+              &#8377; ${listing.price.toLocaleString("en-IN")} / night
+              <i class="tax-info"> &nbsp; &nbsp;+18% GST</i>
+            </p>
           </div>
-        </a>`;
+        </div>
+      </a>`;
     container.appendChild(card);
-  });
+});
+
 }
 
 </script>

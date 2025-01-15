@@ -19,28 +19,179 @@
     font-size: 1rem;
   }
 
+  /* Hide the dropdown on large screens */
+.dropdown {
+  display: none;
+}
+
+/* Show dropdown on mobile devices */
+@media (max-width: 768px) {
+  .dropdown {
+    display: block;  /* Show dropdown for mobile */
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+}
+.search-inp {
+  width: 100%; /* Full width on larger screens */
+}
+
+/* Shrink on mobile */
+@media (max-width: 768px) {
+  .search-inp {
+    width: 80%;  /* Reduce width to 80% on mobile screens */
+    font-size: 0.9rem; /* Adjust font size for better display */
+  }
+  .navbar>.container, .navbar>.container-fluid, .navbar>.container-lg, .navbar>.container-md, .navbar>.container-sm, .navbar>.container-xl, .navbar>.container-xxl{
+    display: flex
+;
+     flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+}
+
+/* Style the mobile button */
+.mobile-navbar-button {
+  display: none;  /* Hidden by default on larger screens */
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #333;
+  padding: 10px;
+  cursor: pointer;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  z-index: 1000; /* Ensure it’s above other elements */
+}
+
+.mobile-navbar-button:hover {
+  color: #fe424d; /* Color change on hover */
+  background-color: rgba(0, 0, 0, 0.1); /* Light background on hover */
+  border-radius: 5px; /* Round the corners on hover */
+}
+
+.mobile-navbar-button i {
+  font-size: 2rem; /* Size of the hamburger icon */
+}
+
+/* Show the mobile button only on screens smaller than 768px */
+@media (max-width: 768px) {
+  .mobile-navbar-button {
+    display: inline-block;  /* Show on mobile */
+  }
+}
+
+
+/* Initially hide the dropdown menu */
+.mobile-dropdown-menu {
+  display:none ;
+  position: absolute;
+  top: 50px; /* Adjust depending on your navbar height */
+  right: 0;
+  background-color: #d4d2d2;
+  color: rgb(19, 19, 19);
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(245, 242, 242, 0.2);
+  z-index: 10;
+}
+
+.mobile-dropdown-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-dropdown-menu ul li {
+  padding: 10px;
+  border-bottom: 1px solid #444;
+}
+
+.mobile-dropdown-menu ul li:last-child {
+  border-bottom: none;
+}
+
+.mobile-dropdown-menu ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.mobile-dropdown-menu ul li a:hover {
+  background-color: #555;
+}
+
+/* By default, hide the dropdown on larger screens */
+@media (min-width: 768px) {
+  .mobile-dropdown-menu {
+    display: none;
+  }
+}
+
+/* Show the dropdown when it's open */
+.mobile-dropdown-menu.open {
+  display: block;
+}
+
+
+
 </style>
 <nav class="navbar navbar-expand-md navbar-light bg-light border-bottom sticky-top">
-    <div class="container-fluid">
-    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="container-fluid wraping">
+    <a class="navbar-brand " href="/listings"><i class="fa-regular fa-compass"></i></a>
+    <div class="navbar-nav ms-auto dropdown">
+      <form class="d-flex" role="search"  action="/listings/search" method="get">
+       <input type="search" class="form-control me-2 search-inp " placeholder="search" aria-label="search" name="query" id="search-input">
+       <button class="btn search-btn" type="submit">
+  <i class="fa-solid fa-magnifying-glass"></i>Search</button>
+      </form>
+   </div>
+   <button class="mobile-navbar-button dropdown" id="mobile-button">
+    <i class="fa fa-bars"></i> <!-- You can replace this with any icon you want -->
+  </button>
+   <div class="mobile-dropdown-menu" id="mobile-dropdown">
+    <ul>
+      <li><a class="nav-link" href="/listings/new">Add New Listing</a></li>
+        <% if(!currUser){%>
+          <li><a class="nav-link " href="/signup"><b>Sign up</b></a></li>
+          <li><a class="nav-link" href="/login"><b>Log in</b></a></li>
+        <%}%>
+        <% if(currUser){%>
+        <li><a class="nav-link" href="/logout">Log out</a></li>
+        <%}%>
+    </ul>
+  </div>
+   <div class="dropdown">
+    <select id="category-dropdown">
+      <option value="Mountain">Mountain</option>
+      <option value="Domes">Domes</option>
+      <option value="Castles">Castles</option>
+      <option value="Arctic">Arctic</option>
+      <option value="Camping">Camping</option>
+      <option value="Boats">Boats</option>
+      <option value="Farms">Farms</option>
+      <!-- Add more options as needed -->
+    </select>
+  </div>
+    
+    
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link" href="/listings">Explore</a>
 
       </div>
-      
       <div class="navbar-nav ms-auto">
-         <form class="d-flex" role="search"  action="/listings/search" method="get">
-          <input type="search" class="form-control me-2 search-inp" placeholder="search" aria-label="search" name="query" id="search-input">
-          <button class="btn search-btn" type="submit">
-     <i class="fa-solid fa-magnifying-glass"></i>Search</button>
-         </form>
-         
-        
-      </div>
+        <form class="d-flex" role="search"  action="/listings/search" method="get">
+         <input type="search" class="form-control me-2 search-inp" placeholder="search" aria-label="search" name="query" id="search-input">
+         <button class="btn search-btn" type="submit">
+    <i class="fa-solid fa-magnifying-glass"></i>Search</button>
+        </form>
+     </div>
+      
+      <!-- Dropdown Menu -->
+
 
       <div class="navbar-nav ms-auto">
         <a class="nav-link" href="/listings/new">Add New Listing</a>
@@ -55,3 +206,62 @@
     </div>
 </div>
  </nav>
+ <script>
+
+  // Add event listener to the dropdown
+document.getElementById('category-dropdown').addEventListener('change', function() {
+  const selectedCategory = this.value;
+  fetchListingsByCategory(selectedCategory);
+});
+
+// Function to fetch listings based on category
+function fetchListingsByCategory(category) {
+  fetch(`/listings/category/${category}`)
+    .then(response => response.json())
+    .then(data => {
+      displayListings(data);
+    })
+    .catch(error => {
+      console.error('Error fetching listings:', error);
+    });
+}
+
+// Function to display the listings on the page
+function displayListings(listings) {
+  const container = document.querySelector('.row');
+  container.innerHTML = ''; // Clear previous listings
+
+  if (listings.length === 0) {
+    container.innerHTML = '<p>No listings found in this category.</p>';
+    return;
+  }
+
+  listings.forEach(listing => {
+    const card = document.createElement('div');
+    card.classList.add('card', 'col', 'listing-card');
+    card.innerHTML = `
+      <a href="/listings/${listing._id}" class="listing-link">
+        <div class="card col listing-card">
+          <img src="${listing.image.url}" class="card-img-top" alt="listing_image" style="height: 20rem">
+          <div class="card-body">
+            <p class="card-text">
+              <b>${listing.title}</b><br>
+              &#8377; ${listing.price.toLocaleString("en-IN")} / night
+              <i class="tax-info"> +18% GST</i>
+            </p>
+          </div>
+        </div>
+      </a>`;
+    container.appendChild(card);
+  });
+}
+// Get the button and dropdown menu
+const mobileButton = document.getElementById("mobile-button");
+const mobileDropdown = document.getElementById("mobile-dropdown");
+
+// Add click event to toggle the dropdown visibility
+mobileButton.addEventListener("click", function () {
+  mobileDropdown.classList.toggle("open");
+});
+
+ </script>
