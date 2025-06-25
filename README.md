@@ -44,7 +44,7 @@ Wanderlust is a full-featured property listing and booking web application inspi
 
 1. **Clone the repository:**
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/Shubh823/Wanderlust.git
    cd FindYourStay
    ```
 
@@ -69,7 +69,8 @@ Wanderlust is a full-featured property listing and booking web application inspi
 
 ## Demo
 
-- **Live Website:** [https://wanderlust-4i18.onrender.com/listings](https://wanderlust-4i18.onrender.com/listings)
+- **Live Website:** [https://wanderlust-4i18.onrender.com](https://wanderlust-4i18.onrender.com)
+
 
 ## Contributing
 
