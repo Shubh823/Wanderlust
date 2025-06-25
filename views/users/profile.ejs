@@ -1,0 +1,29 @@
+<% layout('layouts/boilerplate') %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow p-4">
+        <h2 class="mb-4 text-center">My Profile</h2>
+        <ul class="list-group list-group-flush mb-3">
+          <li class="list-group-item"><strong>Username:</strong> <%= user.username %></li>
+          <li class="list-group-item"><strong>Email:</strong> <%= user.email %></li>
+        </ul>
+        <div class="d-flex justify-content-between">
+          <div>
+            <h5 class="mb-1">Bookings Made</h5>
+            <span class="badge bg-primary fs-5"><%= bookingsCount %></span>
+          </div>
+          <div>
+            <h5 class="mb-1">Properties Listed</h5>
+            <span class="badge bg-success fs-5"><%= listingsCount %></span>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between mt-4">
+          <a href="/bookings/my" class="btn btn-outline-primary">My Bookings</a>
+          <a href="/bookings/owner" class="btn btn-outline-success">Owner Bookings</a>
+          <a href="/listings?owner=me" class="btn btn-outline-secondary">My Listings</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

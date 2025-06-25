@@ -1,4 +1,6 @@
 const User = require("../models/user.js");
+const Booking = require('../models/booking');
+const Listing = require('../models/listing');
 
 module.exports.renderSignupForm= (req, res) => {
     res.render("users/signup.ejs");
@@ -44,3 +46,14 @@ module.exports.logout=(req, res,next) => {
     });
 
 }
+
+module.exports.renderProfile = async (req, res) => {
+    const userId = req.user._id;
+    const bookingsCount = await Booking.countDocuments({ user: userId });
+    const listingsCount = await Listing.countDocuments({ owner: userId });
+    res.render('users/profile.ejs', {
+        user: req.user,
+        bookingsCount,
+        listingsCount
+    });
+};

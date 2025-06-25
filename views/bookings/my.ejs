@@ -1,0 +1,46 @@
+<% layout('layouts/boilerplate') %>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">My Bookings</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card booking-card">
+        <% if (bookings.length === 0) { %>
+          <p class="text-center">You have no bookings yet.</p>
+        <% } else { %>
+          <div class="table-responsive">
+            <table class="table table-bordered align-middle booking-table">
+              <thead class="table-light">
+                <tr>
+                  <th>Property</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% bookings.forEach(booking => { %>
+                  <tr>
+                    <td><a href="/listings/<%= booking.listing._id %>" class="fw-bold"><%= booking.listing.title %></a></td>
+                    <td><%= booking.startDate.toDateString() %></td>
+                    <td><%= booking.endDate.toDateString() %></td>
+                    <td><span class="booking-status <%= booking.status %>"><%= booking.status.charAt(0).toUpperCase() + booking.status.slice(1) %></span></td>
+                    <td>
+                      <% if (booking.status !== 'cancelled') { %>
+                        <form action="/bookings/<%= booking._id %>/cancel" method="POST" style="display:inline;">
+                          <button class="btn btn-outline-danger btn-sm">Cancel</button>
+                        </form>
+                      <% } else { %>
+                        <span class="text-muted">Cancelled</span>
+                      <% } %>
+                    </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>

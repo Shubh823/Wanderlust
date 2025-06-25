@@ -111,3 +111,49 @@ body{
   margin-top: 20px;
 }
 
+/* Booking Pages Custom Styles */
+.booking-card {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  background: #fff;
+}
+.booking-form label {
+  font-weight: 500;
+}
+.booking-form input[type="date"] {
+  border-radius: 0.5rem;
+  border: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+}
+.booking-table {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+.booking-table th, .booking-table td {
+  vertical-align: middle !important;
+  text-align: center;
+}
+.booking-status {
+  padding: 0.4em 1em;
+  border-radius: 1em;
+  font-size: 0.95em;
+  font-weight: 600;
+}
+.booking-status.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+.booking-status.confirmed {
+  background: #d4edda;
+  color: #155724;
+}
+.booking-status.cancelled {
+  background: #f8d7da;
+  color: #721c24;
+}
+

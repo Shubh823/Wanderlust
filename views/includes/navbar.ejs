@@ -65,7 +65,7 @@
   padding: 10px;
   cursor: pointer;
   transition: color 0.3s ease, background-color 0.3s ease;
-  z-index: 1000; /* Ensure it’s above other elements */
+  z-index: 1000; /* Ensure it's above other elements */
 }
 
 .mobile-navbar-button:hover {
@@ -159,7 +159,11 @@
           <li><a class="nav-link" href="/login"><b>Log in</b></a></li>
         <%}%>
         <% if(currUser){%>
-        <li><a class="nav-link" href="/logout">Log out</a></li>
+          <li><a class="nav-link" href="/profile">Profile</a></li>
+          <li><a class="nav-link" href="/bookings/my">My Bookings</a></li>
+          <li><a class="nav-link" href="/bookings/owner">Owner Bookings</a></li>
+          <li><a class="nav-link" href="/listings?owner=me">My Listings</a></li>
+          <li><a class="nav-link" href="/logout">Log out</a></li>
         <%}%>
     </ul>
   </div>
@@ -200,7 +204,11 @@
           <a class="nav-link" href="/login"><b>Log in</b></a>
         <%}%>
         <% if(currUser){%>
-        <a class="nav-link" href="/logout">Log out</a>
+          <a class="nav-link" href="/profile">Profile</a>
+          <a class="nav-link" href="/bookings/my">My Bookings</a>
+          <a class="nav-link" href="/bookings/owner">Owner Bookings</a>
+          <a class="nav-link" href="/listings?owner=me">My Listings</a>
+          <a class="nav-link" href="/logout">Log out</a>
         <%}%>
       </div>
     </div>

@@ -1,0 +1,27 @@
+<% layout('layouts/boilerplate') %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card booking-card">
+        <h2 class="mb-4 text-center">Book <%= listing.title %></h2>
+        <% if (listing.image && listing.image.url) { %>
+          <img src="<%= listing.image.url %>" alt="<%= listing.title %>" class="img-fluid rounded mb-3 d-block mx-auto" style="max-width:300px;">
+        <% } %>
+        <form action="/bookings/listings/<%= listing._id %>/book" method="POST" class="booking-form">
+          <div class="mb-3">
+            <label for="startDate" class="form-label">Start Date</label>
+            <input type="date" class="form-control" id="startDate" name="startDate" required>
+          </div>
+          <div class="mb-3">
+            <label for="endDate" class="form-label">End Date</label>
+            <input type="date" class="form-control" id="endDate" name="endDate" required>
+          </div>
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-success">Book Now</button>
+            <a href="/listings/<%= listing._id %>" class="btn btn-outline-secondary">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
