@@ -27,7 +27,7 @@ let currentTileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{
 }).addTo(map);
 
 // Fetch coordinates and update map based on location
-function initializeMap(location) {
+function initializeMap(location, title) {
     getCoordinates(location).then(({ lat, lon }) => {
         // Update the map view to the location coordinates
         map.setView([lat, lon], 13);

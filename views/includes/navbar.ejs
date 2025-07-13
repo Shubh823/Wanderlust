@@ -1,13 +1,10 @@
 <style>
   .search-btn{
-    background-color: #fe424d;
-    color: white;
     border-radius: 25px;
     padding: 0 1rem 0 1rem;
   }
   .search-btn:hover{
-    background-color: #fe424d;
-    color: white;
+    /* No custom background, inherit from global CSS */
   }
   .search-btn i{
     display: inline;
@@ -69,7 +66,7 @@
 }
 
 .mobile-navbar-button:hover {
-  color: #fe424d; /* Color change on hover */
+  /* No custom color, inherit from global CSS */
   background-color: rgba(0, 0, 0, 0.1); /* Light background on hover */
   border-radius: 5px; /* Round the corners on hover */
 }
@@ -140,11 +137,11 @@
 </style>
 <nav class="navbar navbar-expand-md navbar-light bg-light border-bottom sticky-top">
     <div class="container-fluid wraping">
-    <a class="navbar-brand " href="/listings"><i class="fa-regular fa-compass"></i></a>
+    <a class="navbar-brand " href="/listings"><i class="fa-regular fa-compass" style="color: #4F46E5;"></i></a>
     <div class="navbar-nav ms-auto dropdown">
       <form class="d-flex" role="search"  action="/listings/search" method="get">
        <input type="search" class="form-control me-2 search-inp " placeholder="search" aria-label="search" name="query" id="search-input">
-       <button class="btn search-btn" type="submit">
+       <button class="btn search-btn" type="submit" style="background-color: #4F46E5; color: #fff;">
   <i class="fa-solid fa-magnifying-glass"></i>Search</button>
       </form>
    </div>

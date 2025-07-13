@@ -8,7 +8,7 @@ module.exports.index=async (req, res) => {
       console.log("req.user",req.user);
         allListings = await Listing.find({ owner: req.user._id });
     } else {
-      console.log("hello");
+        
         allListings = await Listing.find({});
     }
     res.render("listings/index.ejs", { allListings, query: req.query });

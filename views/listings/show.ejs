@@ -47,10 +47,10 @@
     </div>
     <% if (currUser && listing.owner && currUser._id.equals(listing.owner._id)) { %>
     <div class="btns mb-3">
-        <a href="/listings/<%=listing._id %>/edit" class="btn btn-dark  offset-3  edit-btn">Edit</a>
+        <a href="/listings/<%=listing._id %>/edit" class="btn btn-primary offset-3 edit-btn">Edit</a>
 
         <form action="/listings/<%= listing._id %>/?_method=Delete" method="post">
-            <button class="btn btn-dark offset-5">Delete</button>
+            <button class="btn btn-primary offset-5">Delete</button>
         </form>
     </div>
     <% } %>
@@ -88,7 +88,7 @@
                     required></textarea>
                 <div class="invalid-feedback">Please add Comment</div>
             </div>
-            <button class=" btn btn-outline-dark">Submit</button>
+            <button class="btn btn-outline-primary">Submit</button>
 
         </form>
         <hr>
@@ -128,7 +128,7 @@
 
     <% if(currUser && !currUser._id.equals(listing.owner._id)){ %>
     <div class="col-6 offset-3 mb-3">
-        <a href="/bookings/listings/<%= listing._id %>/book" class="btn btn-success btn-block mb-3">Book Now</a>
+        <a href="/bookings/listings/<%= listing._id %>/book" class="btn btn-primary btn-block mb-3">Book Now</a>
     </div>
     <% } %>
     </div>
@@ -138,10 +138,10 @@
         console.log("Location from server:", "<%= listing.location %>"); // Log value before JS execution
         document.addEventListener("DOMContentLoaded", function() {
             const location = "<%= listing.location %>";
-            const title="<%=listing.title%>";
+            const title = "<%=listing.title%>";
             console.log("Location from show.ejs:", location);
             if (location) {
-                initializeMap(location); // Initialize map
+                initializeMap(location, title); // Pass both location and title
             } else {
                 console.error("Location is empty or undefined.");
             }
