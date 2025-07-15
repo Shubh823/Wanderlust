@@ -1,6 +1,6 @@
-# Wanderlust - A Property Listing Web Application
+# BookNest - A Property Listing Web Application
 
-Wanderlust is a full-featured property listing and booking web application inspired by platforms like Airbnb. Users can explore, list, and book unique accommodations such as villas, domes, castles, and more. The platform supports user authentication, property management, reviews, and a robust booking system.
+BookNest is a full-featured property listing and booking web application inspired by platforms like Airbnb. Users can explore, list, and book unique accommodations such as villas, domes, castles, and more. The platform supports user authentication, property management, reviews, and a robust booking system.
 
 ## Features
 
@@ -44,7 +44,7 @@ Wanderlust is a full-featured property listing and booking web application inspi
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Shubh823/Wanderlust.git
+   git clone https://github.com/Shubh823/BookNest.git
    cd FindYourStay
    ```
 
