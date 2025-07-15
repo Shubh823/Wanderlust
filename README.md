@@ -69,7 +69,7 @@ BookNest is a full-featured property listing and booking web application inspire
 
 ## Demo
 
-- **Live Website:** [https://wanderlust-4i18.onrender.com](https://wanderlust-4i18.onrender.com)
+- **Live Website:** [https://booknest-dece.onrender.com/listings](https://booknest-dece.onrender.com/listings)
 
 
 ## Contributing
